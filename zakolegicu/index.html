@@ -1,0 +1,179 @@
+<!-- NEMAS U KODU NISTAA ZA VIDJETIII-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Za kolegicu</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #timer {
+        position: absolute;
+        top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      #timer > div {
+        color: white;
+        font-size: 24px;
+        font-family: Arial, sans-serif;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 15px 35px;
+        border-radius: 10px;
+        display: flex;
+        gap: 20px;
+      }
+      #timer > div > div {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .label,
+      .text {
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .text {
+        font-size: 50px;
+        padding: 5px 0 10px;
+        margin: 0;
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      }
+
+      .label {
+        font-family: "Courier New", Courier, monospace;
+        margin: 0;
+      }
+
+      #citat {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      #citatText {
+        position: relative;
+        padding: 20px;
+        font-size: 35px;
+        font-family: "Courier New", Courier, monospace;
+        color: white;
+        max-width: 800px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+      }
+
+      #citatText::before,
+      #citatText::after {
+        content: "“";
+        font-size: 4em;
+        color: white;
+        position: absolute;
+        font-family: Georgia, serif;
+      }
+
+      #citatText::before {
+        content: open-quote;
+        top: 30px;
+        left: -25px;
+      }
+
+      #citatText::after {
+        content: close-quote;
+        bottom: -40px;
+        right: -20px;
+      }
+
+      @media (max-width: 600px) {
+        #citat > div {
+          transform: scale(0.8);
+        }
+
+        #timer > div {
+          transform: scale(0.8);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <iframe
+      src="https://my.spline.design/saturncopy-efe6e42134cc464de6d7c4dadadc3c1f/"
+      frameborder="0"
+      width="100%"
+      height="100%"
+      style="width: 100vw; height: 100vh"
+    ></iframe>
+    <div id="timer">
+      <div>
+        <div>
+          <p class="text" id="days"></p>
+          <p class="label">Dana</p>
+        </div>
+        <div>
+          <p class="text" id="hours"></p>
+          <p class="label">Sati</p>
+        </div>
+        <div>
+          <p class="text" id="minutes"></p>
+          <p class="label">Minuta</p>
+        </div>
+        <div>
+          <p class="text" id="seconds"></p>
+          <p class="label">Sekundi</p>
+        </div>
+      </div>
+    </div>
+    <div id="citat">
+      <div>
+        <p id="citatText">Alle Sprache ist nur eine schlechte Übersetzung.</p>
+      </div>
+    </div>
+    <div
+      id="tip"
+      style="
+        position: absolute;
+        bottom: 5px;
+        color: grey;
+        padding: 0 10px;
+        font-size: 13px;
+      "
+    >
+      <p>Savjet: na telefonu koristi dva prsta da se igras sa Saturnom</p>
+    </div>
+
+    <script>
+      const countdownDate = new Date("September 20, 2024 00:00:00").getTime();
+
+      const x = setInterval(function () {
+        const now = new Date().getTime();
+
+        const distance = countdownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days;
+        document.getElementById("hours").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("timer").innerHTML =
+            "Malo kasnim al updateacu kod"; //sta si mislila da ces saznati sta se desi prije vremena ;)
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
